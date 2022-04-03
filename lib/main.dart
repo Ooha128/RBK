@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
       ),
       home: homePage(),
       routes: {
-        pageRoutes.home: (context) => homePage(),
+        pageRoutes.home: (context) => availability(),
         pageRoutes.avail: (context) => availability(),
         pageRoutes.sale: (context) => sales(),
         pageRoutes.profile: (context) => profilePage(),
