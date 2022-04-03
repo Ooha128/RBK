@@ -17,12 +17,12 @@ class FertilizerTile extends StatelessWidget {
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(10),
-          topRight: Radius.circular(10),
-          bottomRight: Radius.circular(10),
-        ),
+            topLeft: Radius.circular(10),
+            topRight: Radius.circular(10),
+            bottomRight: Radius.circular(10),
+            bottomLeft: Radius.circular(10)),
       ),
-      height: 400,
+      height: 200,
       child: Stack(
         children: <Widget>[
           Container(
