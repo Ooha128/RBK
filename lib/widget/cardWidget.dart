@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:rbk/drawer.dart';
 import 'package:rbk/fertilizerlist.dart';
 import 'package:flutter/material.dart';
@@ -19,28 +17,20 @@ class _GridScreenState extends State<GridScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff84CC83),
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          onPressed: () {
-            MyDrawer();
-          },
-          color: Colors.white,
-          tooltip: 'Menu',
-        ),
-        title: Text(
+        backgroundColor: Colors.purple,
+        title: const Text(
           'Fertilizers',
-          style: const TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.white),
         ),
         actions: _buildActions(),
       ),
+      drawer: MyDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: GridView.builder(
           scrollDirection: Axis.vertical,
           itemBuilder: (context, index) => TopProducts().topProductList[index],
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 1,
             crossAxisSpacing: 5,
             mainAxisSpacing: 5,
@@ -54,9 +44,9 @@ class _GridScreenState extends State<GridScreen> {
 
   List<Widget> _buildActions() => <Widget>[
         IconButton(
-          icon: Icon(Icons.search),
+          icon: const Icon(Icons.search),
           onPressed: () {},
-          color: Colors.grey,
+          color: Colors.white,
           tooltip: 'Search',
         ),
       ];
@@ -78,8 +68,8 @@ class _GridScreenState extends State<GridScreen> {
 
     return Container(
       height: 80,
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      decoration: BoxDecoration(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      decoration: const BoxDecoration(
           color: Color(0xff84CC83),
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20), topRight: Radius.circular(20))),
@@ -96,8 +86,9 @@ class _GridScreenState extends State<GridScreen> {
                 },
                 child: Center(
                   child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                    decoration: BoxDecoration(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                    decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(20),
@@ -113,7 +104,7 @@ class _GridScreenState extends State<GridScreen> {
                         ),
                         Text(
                           bottomNavigationBarOptions[index],
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 15, fontWeight: FontWeight.w500),
                         )
                       ],

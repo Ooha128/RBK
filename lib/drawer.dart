@@ -52,10 +52,6 @@ class _MyDrawerState extends State<MyDrawer> {
             onTap: () =>
                 Navigator.pushReplacementNamed(context, pageRoutes.avail),
           ),
-          ListTile(
-            title: Text('App version 1.0.0'),
-            onTap: () {},
-          ),
         ],
       ),
     );
