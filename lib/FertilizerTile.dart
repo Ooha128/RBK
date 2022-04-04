@@ -54,9 +54,12 @@ class FertilizerTile extends StatelessWidget {
                         Text(company,
                             style: TextStyle(
                                 fontSize: 25.0, fontWeight: FontWeight.bold)),
-                        new Text('Availability: ${avb}',
-                            style: new TextStyle(
-                                fontSize: 20.0, fontWeight: FontWeight.normal)),
+                        Text(
+                          'Availability:',
+                          style: TextStyle(
+                              fontSize: 20.0, fontWeight: FontWeight.normal),
+                        ),
+                        buildEdit(),
                       ]),
                 ),
               ],
@@ -67,3 +70,30 @@ class FertilizerTile extends StatelessWidget {
     );
   }
 }
+
+Widget buildEdit() {
+  bool _isEnable = false;
+  return Row(
+    children: <Widget>[
+      Container(
+        width: 100,
+        child: TextField(
+          decoration: const InputDecoration(
+            hintText: "0",
+            hintStyle: TextStyle(color: Colors.black),
+          ),
+          enabled: _isEnable,
+        ),
+      ),
+      IconButton(
+          icon: const Icon(Icons.edit),
+          onPressed: () {
+            setState(() {
+              _isEnable = true;
+            });
+          })
+    ],
+  );
+}
+
+void setState(Null Function() param0) {}

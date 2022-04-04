@@ -44,6 +44,7 @@ class _MyFlutterListState extends State<sales> {
       appBar: AppBar(
         title: Text('Sales Details'),
       ),
+      drawer: MyDrawer(),
       body: Container(
         height: 400,
         child: ListView.builder(
