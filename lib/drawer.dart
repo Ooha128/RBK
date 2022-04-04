@@ -16,7 +16,7 @@ class _MyDrawerState extends State<MyDrawer> {
         children: <Widget>[
           const UserAccountsDrawerHeader(
             accountName: Text("Ooha"),
-            accountEmail: Text("goohashree@gmail.com"),
+            accountEmail: Text("xxxxxxxx.com"),
             currentAccountPicture: CircleAvatar(
               backgroundImage:
                   NetworkImage("https://unsplash.com/photos/fxOE7y8HmQ8"),

@@ -1,5 +1,5 @@
 import 'package:rbk/drawer.dart';
-import 'package:rbk/widget/cardWidget.dart';
+import 'package:rbk/cardWidget.dart';
 import 'package:flutter/material.dart';
 
 // ignore: camel_case_types

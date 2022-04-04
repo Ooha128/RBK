@@ -22,7 +22,9 @@ class _GridScreenState extends State<GridScreen> {
           'Fertilizers',
           style: TextStyle(color: Colors.white),
         ),
-        actions: _buildActions(),
+        actions: <Widget>[
+          IconButton(onPressed: () {}, icon: Icon(Icons.search))
+        ],
       ),
       drawer: MyDrawer(),
       body: Padding(
