@@ -35,7 +35,7 @@ class _MyDrawerState extends State<MyDrawer> {
                 Navigator.pushReplacementNamed(context, pageRoutes.profile),
           ),
           createDrawerBodyItem(
-            icon: Icons.event_note,
+            icon: Icons.history,
             text: 'Sales',
             onTap: () =>
                 Navigator.pushReplacementNamed(context, pageRoutes.sale),
@@ -47,7 +47,7 @@ class _MyDrawerState extends State<MyDrawer> {
                 context, pageRoutes.notification),
           ),
           createDrawerBodyItem(
-            icon: Icons.contact_phone,
+            icon: Icons.menu_book_outlined,
             text: 'Fertilizers',
             onTap: () =>
                 Navigator.pushReplacementNamed(context, pageRoutes.avail),

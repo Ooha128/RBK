@@ -75,11 +75,6 @@ flutter:
      - lib/assets/14.png
      - lib/assets/15.png
      - lib/assets/16.png
-     - lib/assets/17.png
-     - lib/assets/18.png
-     - lib/assets/19.png
-     - lib/assets/20.png
-     - lib/assets/21.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
