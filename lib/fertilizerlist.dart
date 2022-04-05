@@ -36,32 +36,32 @@ class TopProducts {
       company: 'Iffco',
     ),
     FertilizerTile(
-      title: 'Watermelon',
-      company: '',
+      title: '10:26:26',
+      company: 'Coromandel',
     ),
     FertilizerTile(
-      title: 'Strawberry',
-      company: '',
+      title: '10:26:26',
+      company: 'Coromandel',
     ),
     FertilizerTile(
-      title: 'Coromandel 10:26:26',
-      company: '',
+      title: '10:26:26',
+      company: 'Coromandel',
     ),
     FertilizerTile(
-      title: 'Coromandel 14:35:14',
-      company: '',
+      title: '14:35:14',
+      company: 'Coromandel',
     ),
     FertilizerTile(
-      title: 'Coromandel 28:28:0',
-      company: '',
+      title: '28:28:0',
+      company: 'Iffco',
     ),
     FertilizerTile(
-      title: 'Coromandel 20:20:0:13',
-      company: '',
+      title: '20:20:0:13',
+      company: 'Coromandel',
     ),
     FertilizerTile(
       title: 'Urea',
-      company: '',
+      company: 'Coromandel',
     ),
     FertilizerTile(
       title: '10:26:26',
