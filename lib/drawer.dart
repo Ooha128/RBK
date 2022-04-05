@@ -18,8 +18,8 @@ class _MyDrawerState extends State<MyDrawer> {
             accountName: Text("Ooha"),
             accountEmail: Text("xxxxxxxx.com"),
             currentAccountPicture: CircleAvatar(
-              backgroundImage:
-                  NetworkImage("https://unsplash.com/photos/fxOE7y8HmQ8"),
+              backgroundImage: NetworkImage(
+                  "https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png"),
             ),
           ),
           createDrawerBodyItem(

@@ -34,8 +34,7 @@ class _GridScreenState extends State<GridScreen> {
           itemBuilder: (context, index) => TopProducts().topProductList[index],
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 1,
-            crossAxisSpacing: 5,
-            mainAxisSpacing: 5,
+            childAspectRatio: 1.4,
           ),
           itemCount: TopProducts().topProductList.length,
         ),
@@ -60,7 +59,6 @@ class _GridScreenState extends State<GridScreen> {
       'Notifications',
       'Profile'
     ];
-
     List<IconData> bottomNavigationBarIcons = [
       Icons.home,
       Icons.favorite_border,
@@ -70,9 +68,8 @@ class _GridScreenState extends State<GridScreen> {
 
     return Container(
       height: 80,
-      padding: const EdgeInsets.symmetric(horizontal: 10),
       decoration: const BoxDecoration(
-          color: Color(0xff84CC83),
+          color: Colors.purple,
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20), topRight: Radius.circular(20))),
       child: Row(
@@ -102,7 +99,7 @@ class _GridScreenState extends State<GridScreen> {
                       children: <Widget>[
                         Icon(
                           bottomNavigationBarIcons[index],
-                          color: Colors.green,
+                          color: Colors.purple,
                         ),
                         Text(
                           bottomNavigationBarOptions[index],
