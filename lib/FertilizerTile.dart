@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:rbk/editableField.dart';
 
-class FertilizerTile extends StatelessWidget {
-  final String avb;
+class FertilizerTile extends StatefulWidget {
   final String title;
   final String company;
-  final Color color;
-  const FertilizerTile({
+
+  FertilizerTile({
     Key? key,
-    required this.avb,
     required this.title,
     required this.company,
-    required this.color,
   }) : super(key: key);
+
+  @override
+  State<FertilizerTile> createState() => _FertilizerTileState();
+}
+
+class _FertilizerTileState extends State<FertilizerTile> {
+  final String avb = '0';
+
+  final Color color = Color(0xffF4DEF8);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +44,7 @@ class FertilizerTile extends StatelessWidget {
                 children: <Widget>[
                   ListTile(
                     title: Text(
-                      title,
+                      widget.title,
                       style: const TextStyle(
                           fontSize: 25, fontWeight: FontWeight.bold),
                     ),
@@ -46,7 +52,7 @@ class FertilizerTile extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text(company,
+                          Text(widget.company,
                               style: const TextStyle(
                                   fontSize: 25.0, fontWeight: FontWeight.bold)),
                           const Text(

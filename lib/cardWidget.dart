@@ -1,6 +1,8 @@
+import 'package:rbk/FertilizerTile.dart';
 import 'package:rbk/drawer.dart';
 import 'package:rbk/fertilizerlist.dart';
 import 'package:flutter/material.dart';
+import 'package:rbk/dialogue.dart';
 
 class GridScreen extends StatefulWidget {
   const GridScreen({Key? key}) : super(key: key);
@@ -10,9 +12,29 @@ class GridScreen extends StatefulWidget {
 }
 
 class _GridScreenState extends State<GridScreen> {
+  List<FertilizerTile> l = [];
   int selectedOptionIndex = 0;
+  void addUserData(FertilizerTile user) {
+    setState(() {
+      l.add(user);
+    });
+  }
 
-  get colorstheme => null;
+  void showUserDialog() {
+    showDialog(
+      context: context,
+      builder: (_) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          content: AddUserDialog1(addUserData),
+        );
+      },
+    );
+  }
+
+  get colorstheme => Colors.purple;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,6 +59,13 @@ class _GridScreenState extends State<GridScreen> {
             childAspectRatio: 1.4,
           ),
           itemCount: TopProducts().topProductList.length,
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.purple,
+        onPressed: showUserDialog,
+        child: Icon(
+          Icons.add,
         ),
       ),
       bottomNavigationBar: _buildBottomNavigationBar(),
