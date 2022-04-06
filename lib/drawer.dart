@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:rbk/cardWidget.dart';
+import 'package:rbk/notificationPage.dart';
+import 'package:rbk/sales.dart';
 import 'package:rbk/widget/createDrawerBodyItem.dart';
 import 'package:rbk/pageRoutes.dart';
 
@@ -23,35 +26,43 @@ class _MyDrawerState extends State<MyDrawer> {
             ),
           ),
           createDrawerBodyItem(
-            icon: Icons.report,
-            text: 'Seasonal Conditional Report',
-            onTap: () =>
-                Navigator.pushReplacementNamed(context, pageRoutes.home),
-          ),
+              icon: Icons.report,
+              text: 'Seasonal Conditional Report',
+              onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((context) => notificationPage())),
+                  )),
           createDrawerBodyItem(
-            icon: Icons.account_circle,
-            text: 'Village Profile',
-            onTap: () =>
-                Navigator.pushReplacementNamed(context, pageRoutes.profile),
-          ),
+              icon: Icons.account_circle,
+              text: 'Village Profile',
+              onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((context) => notificationPage())),
+                  )),
           createDrawerBodyItem(
-            icon: Icons.history,
-            text: 'Sales',
-            onTap: () =>
-                Navigator.pushReplacementNamed(context, pageRoutes.sale),
-          ),
+              icon: Icons.history,
+              text: 'Sales',
+              onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: ((context) => sales())),
+                  )),
           createDrawerBodyItem(
-            icon: Icons.notifications_active,
-            text: 'Remainders',
-            onTap: () => Navigator.pushReplacementNamed(
-                context, pageRoutes.notification),
-          ),
+              icon: Icons.notifications_active,
+              text: 'Remainders',
+              onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((context) => notificationPage())),
+                  )),
           createDrawerBodyItem(
-            icon: Icons.menu_book_outlined,
-            text: 'Fertilizers',
-            onTap: () =>
-                Navigator.pushReplacementNamed(context, pageRoutes.avail),
-          ),
+              icon: Icons.menu_book_outlined,
+              text: 'Fertilizers',
+              onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: ((context) => GridScreen())),
+                  )),
         ],
       ),
     );

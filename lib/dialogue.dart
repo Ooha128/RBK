@@ -32,6 +32,7 @@ class _AddUserDialogState extends State<AddUserDialog1> {
 
     var FertilizerController = TextEditingController();
     var CompanyController = TextEditingController();
+    var mspController = TextEditingController();
 
     return Container(
       padding: EdgeInsets.all(8),
@@ -50,11 +51,13 @@ class _AddUserDialogState extends State<AddUserDialog1> {
             ),
             buildTextField('Fertilizer', FertilizerController),
             buildTextField('Company', CompanyController),
+            buildTextField('msp value', mspController),
             ElevatedButton(
               onPressed: () {
                 final user = FertilizerTile(
                     title: FertilizerController.text,
-                    company: CompanyController.text);
+                    company: CompanyController.text,
+                    msp: mspController.text);
                 widget.addUser(user);
                 Navigator.of(context).pop();
               },

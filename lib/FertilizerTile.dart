@@ -4,11 +4,13 @@ import 'package:rbk/editableField.dart';
 class FertilizerTile extends StatefulWidget {
   final String title;
   final String company;
+  final String msp;
 
   FertilizerTile({
     Key? key,
     required this.title,
     required this.company,
+    required this.msp,
   }) : super(key: key);
 
   @override
@@ -24,7 +26,7 @@ class _FertilizerTileState extends State<FertilizerTile> {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        height: 250,
+        height: 275,
         padding: EdgeInsets.all(5.0),
         decoration: BoxDecoration(
           color: color,
@@ -62,7 +64,12 @@ class _FertilizerTileState extends State<FertilizerTile> {
                           ),
                           Container(
                             child: SampleDemo(),
-                          )
+                          ),
+                          Text('MSP Value:' + widget.msp,
+                              style: const TextStyle(
+                                  fontSize: 20.0,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold))
                         ]),
                   ),
                 ],

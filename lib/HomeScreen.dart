@@ -29,7 +29,7 @@ class _Home_ScreenState extends State<Home_Screen>
         child: Column(
           children: [
             Expanded(
-              child: TabBarView(controller: _tabController, children: [
+              child: TabBarView(controller: _tabController, children: const [
                 GridScreen(),
                 GridScreen(),
                 GridScreen(),
