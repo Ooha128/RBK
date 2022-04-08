@@ -1,82 +1,84 @@
 import 'package:flutter/material.dart';
 import 'package:rbk/drawer.dart';
-import 'package:rbk/user.dart';
-import 'package:rbk/user_dialogue.dart';
+import 'data.dart';
+import 'inputform.dart';
 
 class sales extends StatefulWidget {
-  static const String routeName = '/sales';
-  const sales({Key? key}) : super(key: key);
+  static const String routeName = '/homePage';
 
   @override
-  _MyFlutterListState createState() => _MyFlutterListState();
+  State<sales> createState() => _salesState();
 }
 
-class _MyFlutterListState extends State<sales> {
-  List<User> userList = [];
+class _salesState extends State<sales> {
+  final List<Sales> SalesList = [
+    Sales("12/03/2022", "113456"),
+    Sales("14/04/2022", "224524"),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    void addUserData(User user) {
-      setState(() {
-        userList.add(user);
-      });
-    }
-
-    void showUserDialog() {
-      showDialog(
-        context: context,
-        builder: (_) {
-          return AlertDialog(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            content: AddUserDialog(addUserData),
-          );
-        },
-      );
-    }
-
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: showUserDialog,
-        child: Icon(Icons.add),
-      ),
-      appBar: AppBar(
-        title: Text('Sales Details'),
-      ),
-      drawer: MyDrawer(),
-      body: Container(
-        height: 400,
-        child: ListView.builder(
-          itemBuilder: (ctx, index) {
-            return Card(
-              margin: EdgeInsets.all(4),
-              elevation: 8,
-              child: ListTile(
-                title: Text(
-                  userList[index].Fertilizer,
-                  style: TextStyle(
-                    fontSize: 22,
-                    color: Colors.blueGrey,
-                    fontWeight: FontWeight.bold,
+        appBar: AppBar(title: Text('Sales')),
+        drawer: MyDrawer(),
+        body: Stack(children: <Widget>[
+          new ListView.builder(
+              itemCount: SalesList.length,
+              itemBuilder: (BuildContext context, int index) =>
+                  buildSalesCard(context, index)),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyForm()),
+                  );
+                },
+                child: const Text('Add Sales', style: TextStyle(fontSize: 20)),
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.purple,
+                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                    textStyle:
+                        TextStyle(fontSize: 30, fontWeight: FontWeight.bold))),
+          )
+        ]));
+  }
+
+  Widget buildSalesCard(BuildContext context, int index) {
+    final trip = SalesList[index];
+    return new Container(
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(top: 4.0, bottom: 5.0),
+                child: Row(children: <Widget>[
+                  Icon(Icons.date_range),
+                  Spacer(),
+                  Text(
+                    "${trip.Date}",
+                    style: new TextStyle(fontSize: 15.0),
                   ),
-                ),
-                subtitle: Text(
-                  "Id : " + userList[index].PaymentId,
-                  style: TextStyle(
-                    fontSize: 12,
-                  ),
-                ),
-                trailing: Text(
-                  "Remaining Stock : " + userList[index].RemainingStock + " Kg",
-                  style: TextStyle(
-                    fontSize: 12,
-                  ),
-                ),
+                ]),
               ),
-            );
-          },
-          itemCount: userList.length,
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                child: Row(
+                  children: <Widget>[
+                    Icon(Icons.payment),
+                    Spacer(),
+                    Text(
+                      "${trip.PaymentID}",
+                      style: new TextStyle(fontSize: 15.0),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
