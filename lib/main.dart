@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rbk/Screens/Welcome/welcome_screen.dart';
 import 'package:rbk/pageRoutes.dart';
 import 'package:rbk/profilePage.dart';
 import 'notificationPage.dart';
@@ -26,7 +27,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
-      home: homePage(),
+      home: WelcomeScreen(),
       routes: {
         pageRoutes.home: (context) => homePage(),
         pageRoutes.avail: (context) => availability(),
