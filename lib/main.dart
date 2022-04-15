@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:rbk/Screens/Welcome/welcome_screen.dart';
+import 'package:rbk/login_ui.dart';
 import 'package:rbk/pageRoutes.dart';
 import 'package:rbk/profilePage.dart';
 import 'notificationPage.dart';
 import 'availability.dart';
 import 'package:rbk/homePage.dart';
 import 'package:rbk/sales.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -27,7 +30,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
-      home: WelcomeScreen(),
+      home: LoginPage(),
       routes: {
         pageRoutes.home: (context) => homePage(),
         pageRoutes.avail: (context) => availability(),

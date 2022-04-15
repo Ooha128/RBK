@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:rbk/FertilizerTile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 
-class AddUserDialog1 extends StatefulWidget {
-  final Function(FertilizerTile) addUser;
-
-  AddUserDialog1(this.addUser);
-
+class Avail extends StatefulWidget {
+  String name = "";
+  String company = "";
+  Avail(String n, String c) {
+    name = n;
+    company = c;
+  }
   @override
   _AddUserDialogState createState() => _AddUserDialogState();
 }
 
-class _AddUserDialogState extends State<AddUserDialog1> {
+class _AddUserDialogState extends State<Avail> {
   @override
   Widget build(BuildContext context) {
     Widget buildTextField(String hint, TextEditingController controller) {
@@ -32,9 +33,6 @@ class _AddUserDialogState extends State<AddUserDialog1> {
       );
     }
 
-    var FertilizerController = TextEditingController();
-    var CompanyController = TextEditingController();
-    var mspController = TextEditingController();
     var AvaController = TextEditingController();
 
     return Container(
@@ -45,28 +43,38 @@ class _AddUserDialogState extends State<AddUserDialog1> {
         child: Column(
           children: [
             const Text(
-              'Fertilizer',
+              'Availability',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 32,
                 color: Colors.blueGrey,
               ),
             ),
-            buildTextField('Fertilizer', FertilizerController),
-            buildTextField('Company', CompanyController),
             buildTextField('Availability', AvaController),
-            buildTextField('msp value', mspController),
             ElevatedButton(
-              onPressed: () {
-                FirebaseFirestore.instance.collection('fertilizers').add({
-                  'Name': FertilizerController.text,
-                  'Company': CompanyController.text,
-                  'Availability': int.parse(AvaController.text),
-                  'MSP': int.parse(mspController.text)
-                });
-              },
-              child: Text('Add Item'),
-            ),
+                child: Text('Update'),
+                onPressed: () {
+                  FirebaseFirestore.instance
+                      .collection('fertilizers')
+                      .where('Name', isEqualTo: widget.name)
+                      .where('Company', isEqualTo: widget.company)
+                      .get()
+                      .then((v) {
+                    v.docs.forEach(
+                      (element) {
+                        print(element.id);
+                        FirebaseFirestore.instance
+                            .collection('fertilizers')
+                            .doc(element.id)
+                            .update(
+                                {'Availability': int.parse(AvaController.text)})
+                            .then((value) => print("Updated"))
+                            .catchError((error) =>
+                                print("Failed to update user: $error"));
+                      },
+                    );
+                  });
+                })
           ],
         ),
       ),

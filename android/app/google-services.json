@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "998073986732",
+    "project_id": "rbk-fertilizers",
+    "storage_bucket": "rbk-fertilizers.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998073986732:android:108ff8bb29306b1ff93909",
+        "android_client_info": {
+          "package_name": "com.example.rbk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "998073986732-nse476qbeq7c93k7mt3s2mvf8r57dkua.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQRre8h-YnKYfBsCbfOShHZDyMYh9VLq4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "998073986732-nse476qbeq7c93k7mt3s2mvf8r57dkua.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

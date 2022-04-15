@@ -1,8 +1,8 @@
 import 'package:rbk/FertilizerTile.dart';
 import 'package:rbk/drawer.dart';
-import 'package:rbk/fertilizerlist.dart';
 import 'package:flutter/material.dart';
 import 'package:rbk/dialogue.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class GridScreen extends StatefulWidget {
   const GridScreen({Key? key}) : super(key: key);
@@ -45,20 +45,37 @@ class _GridScreenState extends State<GridScreen> {
           style: TextStyle(color: Colors.white),
         ),
         actions: <Widget>[
-          IconButton(onPressed: () {}, icon: Icon(Icons.search))
+          IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+          IconButton(onPressed: () {}, icon: Icon(Icons.download))
         ],
       ),
       drawer: MyDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(10),
-        child: GridView.builder(
-          scrollDirection: Axis.vertical,
-          itemBuilder: (context, index) => TopProducts().topProductList[index],
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 1,
-            childAspectRatio: 1.4,
-          ),
-          itemCount: TopProducts().topProductList.length,
+        child: StreamBuilder(
+          stream:
+              FirebaseFirestore.instance.collection('fertilizers').snapshots(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (!snapshot.hasData) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+
+            return ListView(
+              children: snapshot.data!.docs.map((document) {
+                return Container(
+                  child: Center(
+                      child: FertilizerTile(
+                          title: document['Name'],
+                          company: document['Company'],
+                          availability: document['Availability'],
+                          msp: document['MSP'])),
+                );
+              }).toList(),
+            );
+          },
         ),
       ),
       floatingActionButton: FloatingActionButton(
