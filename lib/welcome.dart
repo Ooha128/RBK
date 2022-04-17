@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rbk/login_ui.dart';
-import 'package:rbk/sign_up_screen.dart';
+import 'package:rbk/register.dart';
 
 class Welcome extends StatefulWidget {
   Welcome({Key? key}) : super(key: key);
@@ -79,7 +79,7 @@ class _WelcomeState extends State<Welcome> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => SignUpScreen()));
+                              builder: (context) => RegistrationPage()));
                     },
                     color: Color(0xff0095FF),
                     shape: RoundedRectangleBorder(

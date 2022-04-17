@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:rbk/round_btn.dart';
-import 'package:rbk/text_input_field.dart';
-import 'package:rbk/theme_data.dart';
-import 'package:rbk/sign_up_screen.dart';
+import 'package:rbk/homePage.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -16,172 +12,152 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle(statusBarColor: Colors.transparent),
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+        backgroundColor: Colors.white,
+        body: SingleChildScrollView(
           child: Container(
-            width: double.infinity,
-            height: double.infinity,
-            color: primaryColorC,
-            child: SingleChildScrollView(
-              padding: EdgeInsets.only(
-                bottom: 0.0,
-              ),
-              physics: AlwaysScrollableScrollPhysics(),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 80,
-                  ),
-                  Text(
-                    'Log In',
-                    style: TextStyle(fontSize: 30, color: textColor),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 50, right: 5, top: 40),
-                      child: Text(
-                        'Email',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: textColor,
+            child: Column(
+              children: <Widget>[
+                Container(
+                  height: 400,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('assets/background.png'),
+                          fit: BoxFit.fill)),
+                  child: Stack(
+                    children: <Widget>[
+                      Positioned(
+                        left: 30,
+                        width: 80,
+                        height: 200,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage('assets/light-1.png'))),
                         ),
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 5, right: 5, top: 5),
-                    child: Column(
-                      children: [
-                        CustomTextInput(
-                          3,
-                          'Enter email here',
-                          false,
-                          Icons.person,
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 50, right: 5, top: 18),
-                      child: Text(
-                        'Password',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: textColor,
+                      Positioned(
+                        left: 140,
+                        width: 80,
+                        height: 150,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage('assets/light-2.png'))),
                         ),
                       ),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 5, right: 5, top: 5),
-                    child: CustomTextInput(
-                      4,
-                      'Enter password here',
-                      true,
-                      Icons.vpn_key,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 20),
-                    child: CustomButton(1, 'Login'),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Text(
-                    '- OR -',
-                    style: TextStyle(color: Colors.white, fontSize: 11),
-                  ),
-                  Text(
-                    'Sign in with',
-                    style: TextStyle(color: Colors.white, fontSize: 13),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 5),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        MaterialButton(
-                          minWidth: 10,
-                          color: Colors.white,
-                          onPressed: () {},
-                          child: Image.asset(
-                            'assets/icon_facebook_48.png',
-                            height: 30,
-                            width: 30,
-                          ),
-                          shape: CircleBorder(),
+                      Positioned(
+                        right: 40,
+                        top: 40,
+                        width: 80,
+                        height: 150,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage('assets/clock.png'))),
                         ),
-                        MaterialButton(
-                          minWidth: 10,
-                          color: Colors.white,
-                          onPressed: () {},
-                          child: Image.asset(
-                            'assets/icon_google_48.png',
-                            height: 30,
-                            width: 30,
-                          ),
-                          shape: CircleBorder(),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Don\'t have an account?  ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: textColor,
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SignUpScreen(),
-                              ),
-                            );
-                          },
-                          child: Text(
-                            'Sign Up',
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: textColor,
-                              fontWeight: FontWeight.bold,
+                      ),
+                      Positioned(
+                        child: Container(
+                          margin: EdgeInsets.only(top: 50),
+                          child: const Center(
+                            child: Text(
+                              "Login",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 40,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                      )
+                    ],
                   ),
-                ],
-              ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(30.0),
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Color.fromRGBO(143, 148, 251, .2),
+                                  blurRadius: 20.0,
+                                  offset: Offset(0, 10))
+                            ]),
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              padding: EdgeInsets.all(8.0),
+                              decoration: BoxDecoration(
+                                  border: Border(
+                                      bottom: BorderSide(color: Colors.grey))),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: "Email or Phone number",
+                                    hintStyle:
+                                        TextStyle(color: Colors.grey[400])),
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(8.0),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: "Password",
+                                    hintStyle:
+                                        TextStyle(color: Colors.grey[400])),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      new GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomePage()));
+                        },
+                        child: Container(
+                          height: 50,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              gradient: LinearGradient(colors: [
+                                Color.fromRGBO(143, 148, 251, 1),
+                                Color.fromRGBO(143, 148, 251, .6),
+                              ])),
+                          child: const Center(
+                            child: Text(
+                              "Login",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 70,
+                      ),
+                      const Text(
+                        "Forgot Password?",
+                        style:
+                            TextStyle(color: Color.fromRGBO(143, 148, 251, 1)),
+                      ),
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }
