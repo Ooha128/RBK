@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rbk/drawer.dart';
 
 class profilePage extends StatefulWidget {
   static const String routeName = '/profilePage';
@@ -15,7 +14,6 @@ class _profilePageState extends State<profilePage> {
         appBar: AppBar(
           title: Text("My Profile"),
         ),
-        drawer: MyDrawer(),
         body: Center(child: Text("This is profile page")));
   }
 }

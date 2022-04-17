@@ -1,7 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
-import 'package:rbk/HomeScreen.dart';
 import 'package:rbk/homePage.dart';
 import 'package:rbk/theme_data.dart';
 import 'package:rbk/sign_up_success.dart';
@@ -30,7 +29,7 @@ class CustomButton extends StatelessWidget {
         onPressed: () {
           if (_iD == 1) {
             Navigator.push(context,
-                PageRouteBuilder(pageBuilder: (context, _, __) => homePage()));
+                PageRouteBuilder(pageBuilder: (context, _, __) => HomePage()));
           } else {
             Navigator.push(
               context,

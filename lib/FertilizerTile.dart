@@ -43,7 +43,7 @@ class _FertilizerTileState extends State<FertilizerTile> {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        height: 250,
+        height: 225,
         padding: EdgeInsets.all(5.0),
         decoration: BoxDecoration(
           color: color,

@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:rbk/round_btn.dart';
 import 'package:rbk/text_input_field.dart';
 import 'package:rbk/theme_data.dart';
-import 'package:rbk/globals.dart' as globals;
 import 'package:rbk/sign_up_screen.dart';
 
 class LoginPage extends StatefulWidget {
@@ -36,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: 80,
                   ),
                   Text(
-                    'Sign In',
+                    'Log In',
                     style: TextStyle(fontSize: 30, color: textColor),
                   ),
                   SizedBox(
@@ -50,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
                         'Email',
                         textAlign: TextAlign.left,
                         style: TextStyle(
-                          fontSize: 13,
+                          fontSize: 15,
                           color: textColor,
                         ),
                       ),
@@ -80,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                         'Password',
                         textAlign: TextAlign.left,
                         style: TextStyle(
-                          fontSize: 13,
+                          fontSize: 15,
                           color: textColor,
                         ),
                       ),

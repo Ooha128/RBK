@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rbk/login_ui.dart';
-import 'package:rbk/pageRoutes.dart';
-import 'package:rbk/profilePage.dart';
-import 'notificationPage.dart';
-import 'availability.dart';
-import 'package:rbk/homePage.dart';
-import 'package:rbk/sales.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:rbk/login_ui.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,13 +25,6 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.purple,
       ),
       home: LoginPage(),
-      routes: {
-        pageRoutes.home: (context) => homePage(),
-        pageRoutes.avail: (context) => availability(),
-        pageRoutes.sale: (context) => sales(),
-        pageRoutes.profile: (context) => profilePage(),
-        pageRoutes.notification: (context) => notificationPage(),
-      },
     );
   }
 }

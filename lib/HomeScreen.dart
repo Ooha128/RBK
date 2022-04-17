@@ -1,9 +1,9 @@
-import 'package:rbk/drawer.dart';
 import 'package:rbk/cardWidget.dart';
 import 'package:flutter/material.dart';
 
 // ignore: camel_case_types
 class Home_Screen extends StatefulWidget {
+  const Home_Screen();
   @override
   _Home_ScreenState createState() => _Home_ScreenState();
 }
