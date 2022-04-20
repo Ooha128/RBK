@@ -40,7 +40,7 @@ class _salesState extends State<sales> {
           Icons.add,
         ),
       ),
-      bottomNavigationBar: BottomNav(),
+      //bottomNavigationBar: BottomNav(),
     );
   }
 

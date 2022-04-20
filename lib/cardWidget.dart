@@ -84,7 +84,7 @@ class _GridScreenState extends State<GridScreen> {
           Icons.add,
         ),
       ),
-      bottomNavigationBar: BottomNav(),
+      //bottomNavigationBar: BottomNav(),
     );
   }
 

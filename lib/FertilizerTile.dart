@@ -43,15 +43,15 @@ class _FertilizerTileState extends State<FertilizerTile> {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        height: 225,
-        padding: EdgeInsets.all(5.0),
+        height: 250,
+        padding: EdgeInsets.all(3.0),
         decoration: BoxDecoration(
           color: color,
           borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(10),
-              topRight: Radius.circular(10),
-              bottomRight: Radius.circular(10),
-              bottomLeft: Radius.circular(10)),
+              topLeft: Radius.circular(15),
+              topRight: Radius.circular(15),
+              bottomRight: Radius.circular(15),
+              bottomLeft: Radius.circular(15)),
         ),
         child: Stack(
           children: [
@@ -80,7 +80,7 @@ class _FertilizerTileState extends State<FertilizerTile> {
                                   fontSize: 20.0,
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold)),
-                          Text('MSP Value:' + widget.msp.toString(),
+                          Text('MSP Value: Rs.' + widget.msp.toString(),
                               style: const TextStyle(
                                   fontSize: 20.0,
                                   color: Colors.black,
@@ -88,6 +88,7 @@ class _FertilizerTileState extends State<FertilizerTile> {
                         ]),
                   ),
                   IconButton(
+                    padding: EdgeInsets.only(left: 300),
                     icon: Icon(Icons.edit),
                     alignment: Alignment.bottomRight,
                     onPressed: showUserDialog,

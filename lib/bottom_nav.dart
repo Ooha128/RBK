@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:rbk/homePage.dart';
 
 class BottomNav extends StatefulWidget {
-  BottomNav({Key? key}) : super(key: key);
+  const BottomNav({Key? key}) : super(key: key);
 
   @override
   State<BottomNav> createState() => _BottomNavState();
@@ -38,6 +39,22 @@ class _BottomNavState extends State<BottomNav> {
                 onTap: () {
                   setState(() {
                     selectedOptionIndex = index;
+
+                    if (selectedOptionIndex == 0) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const HomePage()));
+                    } else if (selectedOptionIndex == 1) {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => HomePage()));
+                    } else if (selectedOptionIndex == 2) {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => HomePage()));
+                    } else if (selectedOptionIndex == 3) {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => HomePage()));
+                    }
                   });
                 },
                 child: Center(

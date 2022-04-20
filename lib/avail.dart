@@ -37,7 +37,7 @@ class _AddUserDialogState extends State<Avail> {
 
     return Container(
       padding: EdgeInsets.all(8),
-      height: 350,
+      height: 200,
       width: 400,
       child: SingleChildScrollView(
         child: Column(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rbk/login_ui.dart';
-import 'package:rbk/register.dart';
 
 class Welcome extends StatefulWidget {
   Welcome({Key? key}) : super(key: key);
@@ -70,28 +69,6 @@ class _WelcomeState extends State<Welcome> {
                           TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
                     ),
                   ),
-                  // creating the signup button
-                  SizedBox(height: 20),
-                  MaterialButton(
-                    minWidth: double.infinity,
-                    height: 60,
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => RegistrationPage()));
-                    },
-                    color: Color(0xff0095FF),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50)),
-                    child: Text(
-                      "Sign up",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18),
-                    ),
-                  )
                 ],
               )
             ],
