@@ -1,8 +1,8 @@
 import 'package:rbk/FertilizerTile.dart';
-import 'package:rbk/bottom_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:rbk/dialogue.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:rbk/homePage.dart';
 
 class GridScreen extends StatefulWidget {
   const GridScreen({Key? key}) : super(key: key);
@@ -45,8 +45,12 @@ class _GridScreenState extends State<GridScreen> {
           style: TextStyle(color: Colors.white),
         ),
         actions: <Widget>[
-          IconButton(onPressed: () {}, icon: Icon(Icons.search)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.download))
+          IconButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HomePage()));
+              },
+              icon: Icon(Icons.home)),
         ],
       ),
       body: Padding(

@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:rbk/category_card.dart';
 import 'package:rbk/sales.dart';
 import 'package:rbk/search_bar.dart';
-import 'package:rbk/bottom_nav.dart';
 import 'package:rbk/HomeScreen.dart';
 
 class HomePage extends StatefulWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rbk/bottom_nav.dart';
+import 'package:rbk/homePage.dart';
 import 'data.dart';
 import 'inputform.dart';
 
@@ -26,7 +26,17 @@ class _salesState extends State<sales> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Sales')),
+      appBar: AppBar(
+        title: Text('Sales'),
+        actions: <Widget>[
+          IconButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HomePage()));
+              },
+              icon: Icon(Icons.home)),
+        ],
+      ),
       body: Stack(children: <Widget>[
         ListView.builder(
             itemCount: SalesList.length,

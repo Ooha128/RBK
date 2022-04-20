@@ -37,8 +37,8 @@ class _WelcomeState extends State<Welcome> {
                     "RBK Fertilizers Monitoring System",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: Colors.grey[700],
-                      fontSize: 20,
+                      color: Color.fromARGB(255, 14, 14, 14),
+                      fontSize: 21,
                     ),
                   )
                 ],
@@ -56,8 +56,10 @@ class _WelcomeState extends State<Welcome> {
                     minWidth: double.infinity,
                     height: 60,
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => LoginPage()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginScreen()));
                     },
                     // defining the shape
                     shape: RoundedRectangleBorder(

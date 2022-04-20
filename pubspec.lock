@@ -125,6 +125,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_animated_button:
+    dependency: "direct main"
+    description:
+      name: flutter_animated_button
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -198,13 +205,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
-  otp_text_field:
-    dependency: "direct main"
-    description:
-      name: otp_text_field
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.2"
   path:
     dependency: transitive
     description:
