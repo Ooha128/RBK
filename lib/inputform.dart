@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MyForm extends StatefulWidget {
   @override
@@ -74,7 +75,32 @@ class _MyFormState extends State<MyForm> {
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          FirebaseFirestore.instance.collection('sales').add({
+                            'Date': _nameController.text,
+                            'Payment_id': _productController.text,
+                            'fertilizers': [],
+                          });
+                          FirebaseFirestore.instance
+                              .collection('sales')
+                              .where('Payment_id',
+                                  isEqualTo: _productController.text)
+                              .get()
+                              .then((v) {
+                            v.docs.forEach((element) {
+                              FirebaseFirestore.instance
+                                  .collection('sales')
+                                  .doc(element.id)
+                                  .update({
+                                    'fertilizers':
+                                        FieldValue.arrayUnion(salesList)
+                                  })
+                                  .then((value) => print("Updated"))
+                                  .catchError((error) =>
+                                      print("Failed to update: $error"));
+                            });
+                          });
+                        },
                         child: const Text('Add Sales',
                             style: TextStyle(fontSize: 20)),
                         style: ElevatedButton.styleFrom(
@@ -163,7 +189,7 @@ class _saleTextFieldsState extends State<saleTextFields> {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _nameController.text = _MyFormState.salesList[widget.index];
     });
 

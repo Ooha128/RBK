@@ -69,8 +69,8 @@ class _AddUserDialogState extends State<Avail> {
                             .update(
                                 {'Availability': int.parse(AvaController.text)})
                             .then((value) => print("Updated"))
-                            .catchError((error) =>
-                                print("Failed to update user: $error"));
+                            .catchError(
+                                (error) => print("Failed to update: $error"));
                       },
                     );
                   });

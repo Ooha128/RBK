@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:rbk/homePage.dart';
-import 'package:rbk/login_ui.dart';
 import 'package:rbk/welcome.dart';
 
 void main() async {
