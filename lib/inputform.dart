@@ -9,7 +9,7 @@ class _MyFormState extends State<MyForm> {
   final _formKey = GlobalKey<FormState>();
   late TextEditingController _nameController;
   late TextEditingController _productController;
-  static List<String> salesList = [''];
+  static List<List<String>> salesList = [[]];
 
   @override
   void initState() {
@@ -118,7 +118,7 @@ class _MyFormState extends State<MyForm> {
       onTap: () {
         if (add) {
           // add new text-fields at the top of all sales textfields
-          salesList.insert(salesList.length - 1, '');
+          salesList[index].insert(salesList.length - 1, '');
         } else
           salesList.removeAt(index);
         setState(() {});
@@ -148,29 +148,51 @@ class saleTextFields extends StatefulWidget {
 
 class _saleTextFieldsState extends State<saleTextFields> {
   late TextEditingController _nameController;
+  late TextEditingController _companyController;
+  late TextEditingController _qtyController;
 
   @override
   void initState() {
     super.initState();
     _nameController = TextEditingController();
+    _companyController = TextEditingController();
+    _qtyController = TextEditingController();
   }
 
   @override
   void dispose() {
     _nameController.dispose();
+    _companyController.dispose();
+    _qtyController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-      _nameController.text = _MyFormState.salesList[widget.index];
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _nameController.text = _MyFormState.salesList[widget.index][0];
+      _companyController.text = _MyFormState.salesList[widget.index][1];
+      _qtyController.text = _MyFormState.salesList[widget.index][2];
     });
 
-    return TextFormField(
-      controller: _nameController,
-      onChanged: (v) => _MyFormState.salesList[widget.index] = v,
-      decoration: InputDecoration(hintText: 'Fertilizers name'),
+    return Row(
+      children: [
+        TextFormField(
+          controller: _nameController,
+          onChanged: (v) => _MyFormState.salesList[widget.index][0] = v,
+          decoration: InputDecoration(hintText: 'Fertilizers name'),
+        ),
+        TextFormField(
+          controller: _companyController,
+          onChanged: (v) => _MyFormState.salesList[widget.index][1] = v,
+          decoration: InputDecoration(hintText: 'Company name'),
+        ),
+        TextFormField(
+          controller: _qtyController,
+          onChanged: (v) => _MyFormState.salesList[widget.index][2] = v,
+          decoration: InputDecoration(hintText: 'Quantity'),
+        ),
+      ],
     );
   }
 }
