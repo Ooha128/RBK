@@ -41,7 +41,6 @@ class _AddUserDialogState extends State<AddUserDialog> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            // ignore: prefer_const_constructors
             Text(
               'Sales Data',
               style: TextStyle(

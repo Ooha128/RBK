@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:rbk/homePage.dart';
+import 'package:rbk/login_ui.dart';
 import 'package:rbk/welcome.dart';
-import 'package:rbk/sales.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +26,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
-      home: sales(),
+      home: Welcome(),
     );
   }
 }
