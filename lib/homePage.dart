@@ -4,6 +4,7 @@ import 'package:rbk/category_card.dart';
 import 'package:rbk/sales.dart';
 import 'package:rbk/search_bar.dart';
 import 'package:rbk/HomeScreen.dart';
+import 'package:rbk/ToDo.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -74,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                         CategoryCard(
                           a: AssetImage('assets/Todo.png'),
                           title: 'ToDo',
-                          path: Home_Screen(),
+                          path: ToDo(),
                         ),
                         CategoryCard(
                           a: AssetImage('assets/profile.png'),
