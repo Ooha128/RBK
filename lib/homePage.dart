@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                       childAspectRatio: .85,
                       crossAxisSpacing: 20,
                       mainAxisSpacing: 20,
-                      children: const [
+                      children: [
                         CategoryCard(
                           a: AssetImage('assets/stock.png'),
                           title: 'Fertilizers',
@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                         CategoryCard(
                           a: AssetImage('assets/profile.png'),
                           title: 'Nearby RBKs',
-                          path: ToDo(),
+                          path: SimpleMapWithPopups(),
                         ),
                       ],
                     ),
