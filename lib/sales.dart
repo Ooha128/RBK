@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rbk/homePage.dart';
 import 'data.dart';
 import 'inputform.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class sales extends StatefulWidget {
   const sales();
@@ -10,10 +11,6 @@ class sales extends StatefulWidget {
 }
 
 class _salesState extends State<sales> {
-  final List<Sales> SalesList = [
-    Sales("12/03/2022", "113456"),
-    Sales("14/04/2022", "224524"),
-  ];
   void showUserDialog() {
     showDialog(
       context: context,
@@ -38,10 +35,24 @@ class _salesState extends State<sales> {
         ],
       ),
       body: Stack(children: <Widget>[
-        ListView.builder(
-            itemCount: SalesList.length,
-            itemBuilder: (BuildContext context, int index) =>
-                buildSalesCard(context, index)),
+        StreamBuilder(
+          stream: FirebaseFirestore.instance.collection('sales').snapshots(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (!snapshot.hasData) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            return ListView(
+              children: snapshot.data!.docs.map((document) {
+                return Container(
+                  child: Center(child: buildSalesCard(document)),
+                );
+              }).toList(),
+            );
+          },
+        ),
       ]),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.purple,
@@ -50,12 +61,10 @@ class _salesState extends State<sales> {
           Icons.add,
         ),
       ),
-      //bottomNavigationBar: BottomNav(),
     );
   }
 
-  Widget buildSalesCard(BuildContext context, int index) {
-    final trip = SalesList[index];
+  Widget buildSalesCard(final d) {
     return new Container(
       child: Card(
         child: Padding(
@@ -68,7 +77,7 @@ class _salesState extends State<sales> {
                   Icon(Icons.date_range),
                   Spacer(),
                   Text(
-                    "${trip.Date}",
+                    "${d['Date']}",
                     style: new TextStyle(fontSize: 15.0),
                   ),
                 ]),
@@ -80,7 +89,7 @@ class _salesState extends State<sales> {
                     Icon(Icons.payment),
                     Spacer(),
                     Text(
-                      "${trip.PaymentID}",
+                      "${d['Payment_id']}",
                       style: new TextStyle(fontSize: 15.0),
                     ),
                   ],

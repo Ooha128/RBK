@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
 
 class MyForm extends StatefulWidget {
   @override
@@ -95,11 +96,15 @@ class _MyFormState extends State<MyForm> {
                                     'fertilizers':
                                         FieldValue.arrayUnion(salesList)
                                   })
-                                  .then((value) => print("Updated"))
+                                  .then(
+                                    (value) => Get.snackbar('Success',
+                                        'Details added Successfully'),
+                                  )
                                   .catchError((error) =>
                                       print("Failed to update: $error"));
                             });
                           });
+                          Navigator.pop(context);
                         },
                         child: const Text('Add Sales',
                             style: TextStyle(fontSize: 20)),
