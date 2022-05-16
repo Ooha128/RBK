@@ -6,7 +6,7 @@ import 'package:rbk/AddScreen.dart';
 import 'package:rbk/utils/AppAssets.dart';
 import 'package:rbk/utils/AppSpaces.dart';
 import 'package:rbk/widget/TaskCard.dart';
-import 'package:rbk/widget/buttons.dart';
+import 'package:rbk/widget/Buttons.dart';
 
 import 'homePage.dart';
 
@@ -40,18 +40,24 @@ class _HomeScreenState extends State<ToDo> {
                       child: Column(
                         children: [
                           AppSpaces.vertical30,
-                          Row(children: [
-                            AppSpaces.horizontal30,
-                            Image.asset(
-                              AppAssets.menu,
-                              width: 30,
-                            ),
-                            AppSpaces.horizontal20,
-                            Image.asset(
-                              AppAssets.notification,
-                              width: 30,
-                            ),
-                          ]),
+                          Row(
+                            children: [
+                              IconButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => HomePage()));
+                                  },
+                                  padding: EdgeInsets.only(left: 25),
+                                  alignment: Alignment.topLeft,
+                                  icon: Icon(
+                                    Icons.home,
+                                    size: 40,
+                                    color: Colors.blue,
+                                  )),
+                            ],
+                          ),
                           AppSpaces.vertical25,
                           Row(children: [
                             AppSpaces.horizontal30,
@@ -65,7 +71,12 @@ class _HomeScreenState extends State<ToDo> {
                             ),
                             Spacer(),
                             InkWell(
-                              onTap: () => AddScreen(),
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => AddScreen()));
+                              },
                               child: Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
@@ -178,9 +189,7 @@ class _HomeScreenState extends State<ToDo> {
                   ),
                   height: 115,
                   width: 135,
-                  child: IconButton(
-                      padding: EdgeInsets.all(20),
-                      alignment: Alignment.topRight,
+                  /*child: IconButton(
                       onPressed: () {
                         Navigator.push(
                             context,
@@ -191,7 +200,7 @@ class _HomeScreenState extends State<ToDo> {
                         Icons.home,
                         size: 40,
                         color: Colors.white,
-                      )),
+                      )),*/
                 ),
               ),
             ],

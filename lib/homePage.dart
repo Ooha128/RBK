@@ -4,6 +4,8 @@ import 'package:rbk/category_card.dart';
 import 'package:rbk/sales.dart';
 import 'package:rbk/search_bar.dart';
 import 'package:rbk/HomeScreen.dart';
+import 'package:rbk/maps.dart';
+import 'ToDo.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,6 +17,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    var simpleMapWithPopups = SimpleMapWithPopups;
     return Scaffold(
       body: Stack(
         children: [
@@ -74,12 +77,12 @@ class _HomePageState extends State<HomePage> {
                         CategoryCard(
                           a: AssetImage('assets/Todo.png'),
                           title: 'ToDo',
-                          path: Home_Screen(),
+                          path: ToDo(),
                         ),
                         CategoryCard(
                           a: AssetImage('assets/profile.png'),
-                          title: 'Village Profile',
-                          path: Home_Screen(),
+                          title: 'Nearby RBKs',
+                          path: ToDo(),
                         ),
                       ],
                     ),

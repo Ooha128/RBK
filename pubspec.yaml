@@ -35,6 +35,11 @@ dependencies:
     sdk: flutter
   flutter_animated_button: ^2.0.0
   flutter_svg: ^1.0.3
+  get: ^4.3.8
+  get_storage: ^2.0.3
+  flutter_map: ^0.14.0
+  flutter_map_marker_popup: ^2.1.2
+  location: ^4.4.0
 
 dev_dependencies:
 
