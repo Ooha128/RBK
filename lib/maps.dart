@@ -11,23 +11,16 @@ class SimpleMapWithPopups extends StatefulWidget {
 
 class _SimpleMapWithPopupsState extends State<SimpleMapWithPopups> {
   List<LatLng> _markerPositions = [];
-
-  /// Used to trigger showing/hiding of popups.
   final PopupController _popupLayerController = PopupController();
 
   @override
   Widget build(BuildContext context) {
-    //print(_markers(context));
-    //Marker m = _markers(context)[1];
-    //print(_markers(context).indexOf(m));
     return Scaffold(
       body: FlutterMap(
         options: MapOptions(
           zoom: 5.0,
           center: LatLng(16.517, 80.610),
-          plugins: [
-            // PopupMarkerPlugin(),
-          ],
+          plugins: [],
         ),
         layers: [
           TileLayerOptions(
@@ -46,10 +39,6 @@ class _SimpleMapWithPopupsState extends State<SimpleMapWithPopups> {
       ),
     );
   }
-
-  final List<LatLng> locList = [];
-
-  final List<List<String>> propList = [];
 
   List<Marker> _markers(BuildContext context) {
     _markerPositions = [
