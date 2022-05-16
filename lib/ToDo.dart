@@ -6,8 +6,9 @@ import 'package:rbk/AddScreen.dart';
 import 'package:rbk/utils/AppAssets.dart';
 import 'package:rbk/utils/AppSpaces.dart';
 import 'package:rbk/widget/TaskCard.dart';
-import 'package:rbk/widget/ScrollBar.dart';
 import 'package:rbk/widget/buttons.dart';
+
+import 'homePage.dart';
 
 class ToDo extends StatefulWidget {
   const ToDo({Key? key}) : super(key: key);
@@ -38,7 +39,6 @@ class _HomeScreenState extends State<ToDo> {
                       ),
                       child: Column(
                         children: [
-                          AppSpaces.vertical20,
                           AppSpaces.vertical30,
                           Row(children: [
                             AppSpaces.horizontal30,
@@ -147,25 +147,6 @@ class _HomeScreenState extends State<ToDo> {
                         padding: EdgeInsets.only(top: 30),
                         child: Row(children: [
                           AppSpaces.horizontal30,
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 20.0),
-                            child: Obx(
-                              () => CustomPaint(
-                                willChange: true,
-                                painter: ScrollPainter(
-                                  progress: controller.progress.value,
-                                  barHeight: 30,
-                                ),
-                                child: Container(
-                                    width: 2,
-                                    height: Get.height,
-                                    child: SizedBox(
-                                      height: controller.progress.value,
-                                    )),
-                              ),
-                            ),
-                          ),
-                          AppSpaces.horizontal30,
                           Expanded(
                             child: ListView.separated(
                               controller: controller.scrollController,
@@ -197,11 +178,20 @@ class _HomeScreenState extends State<ToDo> {
                   ),
                   height: 115,
                   width: 135,
-                  child: Align(
-                    alignment: Alignment(0.4, -0.4),
-                    child: Icon(Icons.account_circle,
-                        color: Colors.white, size: 40),
-                  ),
+                  child: IconButton(
+                      padding: EdgeInsets.all(20),
+                      alignment: Alignment.topRight,
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomePage()));
+                      },
+                      icon: Icon(
+                        Icons.home,
+                        size: 40,
+                        color: Colors.white,
+                      )),
                 ),
               ),
             ],

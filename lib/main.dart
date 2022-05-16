@@ -3,6 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:rbk/welcome.dart';
 import 'package:rbk/sales.dart';
 
+import 'ToDo.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -25,7 +27,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
-      home: sales(),
+      home: ToDo(),
     );
   }
 }
