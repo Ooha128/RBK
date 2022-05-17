@@ -6,7 +6,7 @@ class AppTextField extends StatelessWidget {
       {Key? key, required this.label, required this.value, this.suffix})
       : super(key: key);
   final String label;
-  final String value;
+  final TextEditingController value;
   final Widget? suffix;
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class AppTextField extends StatelessWidget {
           fontSize: 20,
           fontWeight: FontWeight.w700,
         ),
-        controller: TextEditingController(text: value),
+        controller: value,
         decoration: InputDecoration(
           suffix: suffix,
           border: UnderlineInputBorder(

@@ -97,13 +97,13 @@ class _MyFormState extends State<MyForm> {
                                         FieldValue.arrayUnion(salesList)
                                   })
                                   .then(
-                                    (value) => Get.snackbar('Success',
-                                        'Details added Successfully'),
+                                    (value) => print("updated"),
                                   )
                                   .catchError((error) =>
                                       print("Failed to update: $error"));
                             });
                           });
+                          Get.snackbar('Success', 'Details added Successfully');
                           Navigator.pop(context);
                         },
                         child: const Text('Add Sales',

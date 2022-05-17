@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rbk/utils/AppAssets.dart';
@@ -13,6 +14,10 @@ class AddScreen extends StatefulWidget {
 }
 
 class _AddScreenState extends State<AddScreen> {
+  TextEditingController _dateController = TextEditingController();
+  TextEditingController _timeController = TextEditingController();
+  TextEditingController _descController = TextEditingController();
+  TextEditingController _nameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,9 +61,13 @@ class _AddScreenState extends State<AddScreen> {
             AppSpaces.vertical25,
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30.0),
-              child: AppTextField(
-                label: 'Task Name',
-                value: 'Team Meeting',
+              child: Row(
+                children: [
+                  AppTextField(
+                    label: 'Task Name',
+                    value: _nameController,
+                  ),
+                ],
               ),
             ),
             AppSpaces.vertical25,
@@ -69,19 +78,29 @@ class _AddScreenState extends State<AddScreen> {
                   flex: 20,
                   child: AppTextField(
                     label: 'Date',
-                    value: 'Monday, 1 June',
+                    value: _dateController,
                   ),
                 ),
                 Spacer(flex: 10),
-                Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Get.theme.primaryColor,
-                  ),
-                  padding: EdgeInsets.all(10),
-                  child: Icon(
-                    Icons.calendar_today,
-                    color: Colors.white,
+                InkWell(
+                  onTap: () async {
+                    var date = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(1900),
+                        lastDate: DateTime(2100));
+                    _dateController.text = date.toString().substring(0, 10);
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Get.theme.primaryColor,
+                    ),
+                    padding: EdgeInsets.all(10),
+                    child: Icon(
+                      Icons.calendar_today,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ]),
@@ -91,23 +110,32 @@ class _AddScreenState extends State<AddScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 30.0),
               child: Row(children: [
                 Expanded(
+                  flex: 20,
                   child: AppTextField(
-                    label: 'Start Time',
-                    value: '10:00 AM',
-                    suffix: Image.asset(
-                      AppAssets.arrow_down,
-                      width: 25,
-                    ),
+                    label: 'Time',
+                    value: _timeController,
                   ),
                 ),
-                AppSpaces.horizontal20,
-                Expanded(
-                  child: AppTextField(
-                    label: 'End Time',
-                    value: '11:00 AM',
-                    suffix: Image.asset(
-                      AppAssets.arrow_down,
-                      width: 25,
+                Spacer(flex: 10),
+                InkWell(
+                  onTap: () async {
+                    var time = await showTimePicker(
+                      context: context,
+                      initialTime: TimeOfDay.now(),
+                      initialEntryMode: TimePickerEntryMode.dial,
+                    );
+                    _timeController.text =
+                        time!.hour.toString() + ":" + time.minute.toString();
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Get.theme.primaryColor,
+                    ),
+                    padding: EdgeInsets.all(10),
+                    child: Icon(
+                      Icons.timer,
+                      color: Colors.white,
                     ),
                   ),
                 ),
@@ -117,17 +145,23 @@ class _AddScreenState extends State<AddScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30.0),
               child: AppTextField(
-                label: 'Describtion',
-                value: 'Discuss all question about project',
+                label: 'Description',
+                value: _descController,
               ),
             ),
             AppSpaces.vertical25,
             Center(
               child: AppButton(
-                label: 'Create task',
-                onTap: () =>
-                    Get.snackbar('Success', 'Task Created Successfully'),
-              ),
+                  label: 'Create task',
+                  onTap: () => {
+                        FirebaseFirestore.instance.collection('Todo').add({
+                          'Title': _nameController.text,
+                          'Description': _descController.text,
+                          'Date': _dateController.text,
+                          'Time': _timeController
+                        }),
+                        Get.snackbar('Success', 'Task Created Successfully'),
+                      }),
             ),
             AppSpaces.vertical25,
           ],

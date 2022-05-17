@@ -1,14 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rbk/models/TaskModel.dart';
 import 'package:rbk/utils/AppSpaces.dart';
 
-class TaskCard extends StatelessWidget {
+class TaskModel {
+  final String title;
+  final String description;
+  final String time;
+  final String date;
+
+  const TaskModel({
+    required this.title,
+    required this.description,
+    required this.time,
+    required this.date,
+  });
+}
+
+class TaskCard extends StatefulWidget {
   const TaskCard({
     Key? key,
     required this.task,
   }) : super(key: key);
   final TaskModel task;
+
+  @override
+  State<TaskCard> createState() => _TaskCardState();
+}
+
+class _TaskCardState extends State<TaskCard> {
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
@@ -22,7 +41,7 @@ class TaskCard extends StatelessWidget {
         child: Row(
           children: [
             Image.asset(
-              task.image,
+              'assets/task.png',
               height: 60,
             ),
             AppSpaces.horizontal20,
@@ -30,7 +49,7 @@ class TaskCard extends StatelessWidget {
               child:
                   Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
                 Text(
-                  task.title,
+                  widget.task.title,
                   textAlign: TextAlign.end,
                   style: TextStyle(
                     fontSize: 21,
@@ -39,7 +58,7 @@ class TaskCard extends StatelessWidget {
                 ),
                 AppSpaces.vertical5,
                 Text(
-                  task.description,
+                  widget.task.description,
                   textAlign: TextAlign.end,
                   style: TextStyle(
                     fontSize: 15,
@@ -65,9 +84,11 @@ class TaskCard extends StatelessWidget {
           ),
           padding: EdgeInsets.all(10),
           child: Text(
-            task.time,
+            widget.task.time,
             style: TextStyle(
-                fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold),
+                fontSize: 15,
+                color: Color.fromARGB(255, 7, 103, 237),
+                fontWeight: FontWeight.bold),
           ),
         ),
       )

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rbk/homePage.dart';
-import 'data.dart';
 import 'inputform.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 

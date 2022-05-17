@@ -1,14 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rbk/ToDoController.dart';
-import 'package:rbk/models/TaskModel.dart';
 import 'package:rbk/AddScreen.dart';
 import 'package:rbk/utils/AppAssets.dart';
 import 'package:rbk/utils/AppSpaces.dart';
 import 'package:rbk/widget/TaskCard.dart';
 import 'package:rbk/widget/Buttons.dart';
-
 import 'homePage.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 class ToDo extends StatefulWidget {
   const ToDo({Key? key}) : super(key: key);
@@ -18,6 +19,7 @@ class ToDo extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<ToDo> {
+  DateTime now = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ToDoController>(
@@ -101,47 +103,22 @@ class _HomeScreenState extends State<ToDo> {
                               'Today',
                               style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 16,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             Spacer(),
                             Text(
-                              'Monday, 1 June',
+                              DateFormat.yMMMMd().format(now).toString(),
                               style: TextStyle(
                                 color: Get.theme.colorScheme.secondary,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w300,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                             AppSpaces.horizontal30,
                           ]),
-                          AppSpaces.vertical15,
-                          Container(
-                            height: 60,
-                            padding: EdgeInsets.only(left: 30),
-                            child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: 7,
-                              itemBuilder: (context, index) {
-                                return Padding(
-                                  padding: const EdgeInsets.only(right: 15.0),
-                                  child: DayButton(
-                                    dayNumber: index + 1,
-                                    character: controller
-                                        .getWeekOfDaysFirstLettersByIndex(
-                                            index),
-                                    isSelected:
-                                        controller.selectedIndex == index,
-                                    onTap: () {
-                                      controller.setSelectedIndex(index);
-                                    },
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                          AppSpaces.vertical20,
+                          AppSpaces.vertical30,
                         ],
                       ),
                     ),
@@ -159,14 +136,31 @@ class _HomeScreenState extends State<ToDo> {
                         child: Row(children: [
                           AppSpaces.horizontal30,
                           Expanded(
-                            child: ListView.separated(
-                              controller: controller.scrollController,
-                              itemCount: taskList.length,
-                              padding: EdgeInsets.only(bottom: 30),
-                              separatorBuilder: (context, index) =>
-                                  AppSpaces.vertical30,
-                              itemBuilder: (context, index) {
-                                return TaskCard(task: taskList[index]);
+                            child: StreamBuilder(
+                              stream: FirebaseFirestore.instance
+                                  .collection('ToDo')
+                                  .snapshots(),
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                }
+                                return ListView(
+                                  children: snapshot.data!.docs.map((document) {
+                                    return Container(
+                                      child: Center(
+                                          child: TaskCard(
+                                              task: TaskModel(
+                                                  title: document['title'],
+                                                  description:
+                                                      document['Description'],
+                                                  time: document['Time'],
+                                                  date: document['Date']))),
+                                    );
+                                  }).toList(),
+                                );
                               },
                             ),
                           ),
@@ -189,18 +183,6 @@ class _HomeScreenState extends State<ToDo> {
                   ),
                   height: 115,
                   width: 135,
-                  /*child: IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => HomePage()));
-                      },
-                      icon: Icon(
-                        Icons.home,
-                        size: 40,
-                        color: Colors.white,
-                      )),*/
                 ),
               ),
             ],
