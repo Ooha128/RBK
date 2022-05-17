@@ -68,50 +68,60 @@ class _salesState extends State<sales> {
     return Card(
         child: InkWell(
       onTap: () => {
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text('Date: ${d['Date']}',
-                textAlign: TextAlign.center,
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-            Text('Payment Id: ${d['Payment_id']}',
-                textAlign: TextAlign.center,
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-            Container(
-              color: Colors.grey,
-              height: 300.0, // Change as per your requirement
-              width: 300.0, // Change as per your requirement
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: s.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                      title: Card(
-                    child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          s[index],
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
-                        )),
-                  ));
-                },
+        AlertDialog(
+            title: Container(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Sales Details',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
+              color: Colors.blueAccent,
             ),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text("Close"),
-              ),
-            )
-          ],
-        )
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text('Date: ${d['Date']}',
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 20)),
+                Text('Payment Id: ${d['Payment_id']}',
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 20)),
+                Container(
+                  height: 300.0, // Change as per your requirement
+                  width: 300.0, // Change as per your requirement
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: s.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ListTile(
+                          title: Card(
+                        child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              s[index],
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
+                            )),
+                      ));
+                    },
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text("Close"),
+                  ),
+                )
+              ],
+            ))
       },
       child: Padding(
         padding: const EdgeInsets.all(10.0),
