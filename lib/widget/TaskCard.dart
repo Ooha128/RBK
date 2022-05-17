@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rbk/utils/AppSpaces.dart';
@@ -28,6 +29,19 @@ class TaskCard extends StatefulWidget {
 }
 
 class _TaskCardState extends State<TaskCard> {
+  bool? value = false;
+  Color getColor(Set<MaterialState> states) {
+    const Set<MaterialState> interactiveStates = <MaterialState>{
+      MaterialState.pressed,
+      MaterialState.hovered,
+      MaterialState.focused,
+    };
+    if (states.any(interactiveStates.contains)) {
+      return Colors.blue;
+    }
+    return Colors.black;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
@@ -40,9 +54,38 @@ class _TaskCardState extends State<TaskCard> {
         padding: EdgeInsets.symmetric(horizontal: 25, vertical: 35),
         child: Row(
           children: [
-            Image.asset(
-              'assets/task.png',
-              height: 60,
+            Checkbox(
+                checkColor: Colors.white,
+                fillColor: MaterialStateProperty.resolveWith(getColor),
+                value: value,
+                onChanged: (bool? v) {
+                  setState(
+                    () {
+                      FirebaseFirestore.instance
+                          .collection('Todo')
+                          .where('Date', isEqualTo: widget.task.date)
+                          .where('Time', isEqualTo: widget.task.time)
+                          .get()
+                          .then((v) {
+                        v.docs.forEach((element) {
+                          print(element.id);
+                          FirebaseFirestore.instance
+                              .collection('Todo')
+                              .doc(element.id)
+                              .delete();
+                        });
+                      });
+                    },
+                  );
+                }),
+            Text(
+              widget.task.date,
+              textAlign: TextAlign.end,
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color: Get.theme.colorScheme.secondary,
+              ),
             ),
             AppSpaces.horizontal20,
             Expanded(
@@ -80,15 +123,13 @@ class _TaskCardState extends State<TaskCard> {
               topLeft: Radius.circular(12),
               bottomRight: Radius.circular(12),
             ),
-            color: Get.theme.canvasColor,
+            color: Colors.blueAccent,
           ),
           padding: EdgeInsets.all(10),
           child: Text(
             widget.task.time,
             style: TextStyle(
-                fontSize: 15,
-                color: Color.fromARGB(255, 7, 103, 237),
-                fontWeight: FontWeight.bold),
+                fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
           ),
         ),
       )

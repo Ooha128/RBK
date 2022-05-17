@@ -70,7 +70,7 @@ class _AddUserDialogState extends State<AddUserDialog1> {
                     toastLength: Toast.LENGTH_SHORT,
                     gravity: ToastGravity.CENTER,
                     timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.green,
+                    backgroundColor: Colors.blue,
                     textColor: Colors.white,
                     fontSize: 16.0);
                 Navigator.pop(context);

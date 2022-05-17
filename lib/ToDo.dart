@@ -6,10 +6,8 @@ import 'package:rbk/AddScreen.dart';
 import 'package:rbk/utils/AppAssets.dart';
 import 'package:rbk/utils/AppSpaces.dart';
 import 'package:rbk/widget/TaskCard.dart';
-import 'package:rbk/widget/Buttons.dart';
 import 'homePage.dart';
 import 'package:intl/intl.dart';
-import 'package:intl/date_symbol_data_local.dart';
 
 class ToDo extends StatefulWidget {
   const ToDo({Key? key}) : super(key: key);
@@ -138,7 +136,7 @@ class _HomeScreenState extends State<ToDo> {
                           Expanded(
                             child: StreamBuilder(
                               stream: FirebaseFirestore.instance
-                                  .collection('ToDo')
+                                  .collection('Todo')
                                   .snapshots(),
                               builder: (BuildContext context,
                                   AsyncSnapshot<QuerySnapshot> snapshot) {

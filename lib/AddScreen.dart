@@ -7,8 +7,6 @@ import 'package:rbk/widget/FormElement.dart';
 import 'package:rbk/widget/Buttons.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import 'ToDo.dart';
-
 class AddScreen extends StatefulWidget {
   const AddScreen({Key? key}) : super(key: key);
 
@@ -17,10 +15,14 @@ class AddScreen extends StatefulWidget {
 }
 
 class _AddScreenState extends State<AddScreen> {
-  TextEditingController _dateController = TextEditingController();
-  TextEditingController _timeController = TextEditingController();
-  TextEditingController _descController = TextEditingController();
-  TextEditingController _nameController = TextEditingController();
+  final TextEditingController _dateController =
+      TextEditingController(text: DateTime.now().toString().substring(0, 10));
+  final TextEditingController _timeController =
+      TextEditingController(text: DateTime.now().toString().substring(11, 16));
+  final TextEditingController _descController =
+      TextEditingController(text: 'Task Description');
+  final TextEditingController _nameController =
+      TextEditingController(text: 'Task Name');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,13 +66,9 @@ class _AddScreenState extends State<AddScreen> {
             AppSpaces.vertical25,
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30.0),
-              child: Row(
-                children: [
-                  AppTextField(
-                    label: 'Task Name',
-                    value: _nameController,
-                  ),
-                ],
+              child: AppTextField(
+                label: 'Task Name',
+                value: _nameController,
               ),
             ),
             AppSpaces.vertical25,
@@ -119,7 +117,7 @@ class _AddScreenState extends State<AddScreen> {
                     value: _timeController,
                   ),
                 ),
-                Spacer(flex: 10),
+                Spacer(),
                 InkWell(
                   onTap: () async {
                     var time = await showTimePicker(
@@ -166,13 +164,12 @@ class _AddScreenState extends State<AddScreen> {
                         Fluttertoast.showToast(
                             msg: "Task Added Successfully",
                             toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.CENTER,
+                            gravity: ToastGravity.BOTTOM,
                             timeInSecForIosWeb: 1,
-                            backgroundColor: Colors.green,
+                            backgroundColor: Colors.blue,
                             textColor: Colors.white,
                             fontSize: 16.0),
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => ToDo())),
+                        Navigator.pop(context),
                       }),
             ),
             AppSpaces.vertical25,

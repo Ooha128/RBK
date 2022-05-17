@@ -107,9 +107,9 @@ class _MyFormState extends State<MyForm> {
                           Fluttertoast.showToast(
                               msg: "Details Added Successfully",
                               toastLength: Toast.LENGTH_SHORT,
-                              gravity: ToastGravity.CENTER,
+                              gravity: ToastGravity.BOTTOM,
                               timeInSecForIosWeb: 1,
-                              backgroundColor: Colors.green,
+                              backgroundColor: Colors.blue,
                               textColor: Colors.white,
                               fontSize: 16.0);
                           Navigator.pop(context);

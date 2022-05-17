@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:rbk/AddScreen.dart';
+import 'package:rbk/ToDo.dart';
 import 'package:rbk/welcome.dart';
 
 void main() async {
@@ -24,7 +26,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
-      home: Welcome(),
+      home: ToDo(),
     );
   }
 }
