@@ -56,7 +56,7 @@ class _salesState extends State<sales> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.purple,
         onPressed: showUserDialog,
-        child: Icon(
+        child: const Icon(
           Icons.add,
         ),
       ),
@@ -64,65 +64,7 @@ class _salesState extends State<sales> {
   }
 
   Widget buildSalesCard(final d) {
-    List<String> s = d['fertilizers'];
     return Card(
-        child: InkWell(
-      onTap: () => {
-        AlertDialog(
-            title: Container(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'Sales Details',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-              color: Colors.blueAccent,
-            ),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text('Date: ${d['Date']}',
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 20)),
-                Text('Payment Id: ${d['Payment_id']}',
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 20)),
-                Container(
-                  height: 300.0, // Change as per your requirement
-                  width: 300.0, // Change as per your requirement
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: s.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return ListTile(
-                          title: Card(
-                        child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              s[index],
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
-                            )),
-                      ));
-                    },
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text("Close"),
-                  ),
-                )
-              ],
-            ))
-      },
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
@@ -142,18 +84,92 @@ class _salesState extends State<sales> {
               padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
               child: Row(
                 children: <Widget>[
-                  Icon(Icons.payment),
+                  const Icon(Icons.payment),
                   Spacer(),
                   Text(
                     "${d['Payment_id']}",
-                    style: new TextStyle(fontSize: 15.0),
+                    style: TextStyle(fontSize: 15.0),
                   ),
                 ],
               ),
-            )
+            ),
+            TextButton(
+                onPressed: () {
+                  List<String> s = List.from(d['fertilizers']);
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                          title: Container(
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'Sales Details',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                            color: Colors.blueAccent,
+                          ),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text('Date: ${d['Date']}',
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20)),
+                              Text('Payment Id: ${d['Payment_id']}',
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20)),
+                              Container(
+                                height: 300.0, // Change as per your requirement
+                                width: 300.0, // Change as per your requirement
+                                child: ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: s.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return ListTile(
+                                        title: Card(
+                                      child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                            s[index],
+                                            textAlign: TextAlign.center,
+                                            style:
+                                                const TextStyle(fontSize: 20),
+                                          )),
+                                    ));
+                                  },
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.bottomRight,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text("Close"),
+                                ),
+                              )
+                            ],
+                          ));
+                    },
+                  );
+                },
+                child: Text(
+                  'More Details>>',
+                  textAlign: TextAlign.right,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                      color: Color.fromARGB(255, 1, 10, 54)),
+                ))
           ],
         ),
       ),
-    ));
+    );
   }
 }
