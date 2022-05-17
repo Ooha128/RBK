@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 class MyForm extends StatefulWidget {
@@ -103,7 +104,14 @@ class _MyFormState extends State<MyForm> {
                                       print("Failed to update: $error"));
                             });
                           });
-                          Get.snackbar('Success', 'Details added Successfully');
+                          Fluttertoast.showToast(
+                              msg: "Details Added Successfully",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.CENTER,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.green,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
                           Navigator.pop(context);
                         },
                         child: const Text('Add Sales',

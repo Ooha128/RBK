@@ -5,6 +5,9 @@ import 'package:rbk/utils/AppAssets.dart';
 import 'package:rbk/utils/AppSpaces.dart';
 import 'package:rbk/widget/FormElement.dart';
 import 'package:rbk/widget/Buttons.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+import 'ToDo.dart';
 
 class AddScreen extends StatefulWidget {
   const AddScreen({Key? key}) : super(key: key);
@@ -160,7 +163,16 @@ class _AddScreenState extends State<AddScreen> {
                           'Date': _dateController.text,
                           'Time': _timeController
                         }),
-                        Get.snackbar('Success', 'Task Created Successfully'),
+                        Fluttertoast.showToast(
+                            msg: "Task Added Successfully",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.CENTER,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: Colors.green,
+                            textColor: Colors.white,
+                            fontSize: 16.0),
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => ToDo())),
                       }),
             ),
             AppSpaces.vertical25,

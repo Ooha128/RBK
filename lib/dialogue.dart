@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rbk/FertilizerTile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class AddUserDialog1 extends StatefulWidget {
   final Function(FertilizerTile) addUser;
@@ -64,7 +65,15 @@ class _AddUserDialogState extends State<AddUserDialog1> {
                   'Availability': int.parse(AvaController.text),
                   'MSP': int.parse(mspController.text)
                 });
-                Get.snackbar('Success', 'Details added Successfully');
+                Fluttertoast.showToast(
+                    msg: "Fertilizer Added Successfully",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.CENTER,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.green,
+                    textColor: Colors.white,
+                    fontSize: 16.0);
+                Navigator.pop(context);
               },
               child: Text('Add Item'),
             ),
