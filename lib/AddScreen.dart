@@ -156,10 +156,10 @@ class _AddScreenState extends State<AddScreen> {
                   label: 'Create task',
                   onTap: () => {
                         FirebaseFirestore.instance.collection('Todo').add({
-                          'Title': _nameController.text,
+                          'title': _nameController.text,
                           'Description': _descController.text,
                           'Date': _dateController.text,
-                          'Time': _timeController
+                          'Time': _timeController.text,
                         }),
                         Fluttertoast.showToast(
                             msg: "Task Added Successfully",

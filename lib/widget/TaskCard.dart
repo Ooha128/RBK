@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rbk/utils/AppSpaces.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class TaskModel {
   final String title;
@@ -73,6 +74,14 @@ class _TaskCardState extends State<TaskCard> {
                               .collection('Todo')
                               .doc(element.id)
                               .delete();
+                          Fluttertoast.showToast(
+                              msg: "Task Completed",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.blue,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
                         });
                       });
                     },
@@ -123,7 +132,7 @@ class _TaskCardState extends State<TaskCard> {
               topLeft: Radius.circular(12),
               bottomRight: Radius.circular(12),
             ),
-            color: Colors.blueAccent,
+            color: Colors.blue,
           ),
           padding: EdgeInsets.all(10),
           child: Text(
