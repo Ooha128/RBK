@@ -1,5 +1,3 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 import 'package:rbk/homePage.dart';
 import 'inputform.dart';
@@ -105,7 +103,7 @@ class _salesState extends State<sales> {
             ),
             Align(
               alignment: Alignment.bottomRight,
-              child: FlatButton(
+              child: ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
